@@ -9,7 +9,7 @@ sap.ui.define([
 
         return Controller.extend("projectfullstack.controller.List", {
             onInit: function () {
-
+                //teste deploy
             }
         });
     });
