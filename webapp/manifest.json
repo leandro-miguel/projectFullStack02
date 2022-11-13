@@ -17,7 +17,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/sap/opu/odata/sap/ZPLP_SERVICEBINDING/",
+                "uri": "/sap/opu/odata/sap/ZPLP_SERVICEBINDCPF/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
@@ -84,11 +84,20 @@
                     "bundleName": "projectfullstack.i18n.i18n"
                 }
             },
-            "": {
+            "oServiceMainModel": {
                 "dataSource": "mainService",
                 "preload": true,
                 "settings": {}
-            }
+            },
+            "oListModel": {
+                "type": "sap.ui.model.json.JSONModel"
+             },
+             "oCreateModel": {
+                "type": "sap.ui.model.json.JSONModel"
+             },
+             "oUserModel": {
+                "type": "sap.ui.model.json.JSONModel"
+            }  
         },
         "resources": {
             "css": [
