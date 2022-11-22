@@ -1,7 +1,130 @@
-<mvc:View controllerName="projectfullstack.controller.List"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+<mvc:View
+		controllerName="projectfullstack.controller.List" 
+		height="100%"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns:m="sap.m"
+        xmlns="sap.ui.table"
+		xmlns:f="sap.f"
+		xmlns:fb="sap.ui.comp.filterbar"
+		xmlns:svm="sap.ui.comp.smartvariants">
+		<f:DynamicPage id="_IDGenDynamicPage1">
+			<f:title>
+				<f:DynamicPageTitle id="_IDGenDynamicPageTitle1">
+					
+				</f:DynamicPageTitle>
+			</f:title>
+			<f:header>
+				<f:DynamicPageHeader id="_IDGenDynamicPageHeader1">
+					<f:content>
+						<fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" showGoOnFB="true" showFilterConfiguration="false">
+							<fb:filterItems> 
+								<fb:FilterItem id="_IDGenFilterItem1" name="Name" label="{i18n>Search}">
+									<fb:control>
+										<m:SearchField id="_IDOnSearch" liveChange=".onSearch" value="{oListModel>/SearchValue}"/>
+									</fb:control>
+								</fb:FilterItem>
+							</fb:filterItems>
+						</fb:FilterBar>
+					</f:content>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+				<Table id="_IDGenTable1"
+				rows="{path: 'oListModel>/rows'}"
+				selectionMode="MultiToggle"
+				visibleRowCount="{oListModel>/rowsCount}"
+				ariaLabelledBy="title">
+				<extension>
+					<m:OverflowToolbar id="_IDGenOverflowToolbar1" style="Clear">
+						<m:Title id="title" text="Products"/>
+                        <m:ToolbarSpacer id="_IDToolbarspacer"/>
+                        <m:Button id="_IDButtomAdd"
+                        text="Adicionar"
+                        type="Transparent"
+						press="_onCreate"/>
+                        <m:Button id="_IDButtomDel"
+                        text="Deletar"
+                        type="Transparent"
+						press="_onRemove"/>
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column id="_IDGenColumn1" width="auto">
+						<m:Label id="_IDGenLabel1" text="{i18n>cpf}" />
+						<template>
+							<m:Label id="_IDGenLabel01" text="{oListModel>Cpf}"/>
+						</template>
+					</Column>
+					<Column id="_IDGenColumn2" width="auto">
+						<m:Label id="_IDGenLabel2" text="{i18n>firstName}"/>
+						<template>
+							<m:Label id="_IDGenLabel02" text="{oListModel>FirstName}" />
+						</template>
+					</Column>
+					<Column id="_IDGenColumn3" width="auto">
+						<m:Label id="_IDGenLabel3" text="{i18n>secondName}" />
+						<template>
+							<m:Label id="_IDGenLabel03" text="{oListModel>SecondName}" />
+						</template>
+					</Column>
+					<Column id="_IDGenColumn4" width="auto">
+						<m:Label id="_IDGenLabel5" text="{i18n>dateNasc}" />
+						<template>
+							<m:Label id="_IDGenLabel04" text="{path: 'oListModel>Nascimento' , type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy', UTC: true }}" />
+						</template>
+					</Column>
+					<Column id="_IDGenColumn5" width="auto">
+						<m:Label id="_IDGenLabel6" text="{i18n>sex}"/>
+						<template>
+							<m:Label id="_IDGenLabel05" text="{oListModel>Sexo}" />
+						</template>
+					</Column>
+					
+					<Column id="_IDGenColumn7" width="auto">
+						<m:Label id="_IDGenLabel8" text="{i18n>country}"/>
+						<template>
+							<m:Label id="_IDGenLabel06" text="{path: 'oListModel>PaisOrigem'}" />
+						</template>
+					</Column>
+					<!-- <Column id="_IDGenColumn8" width="auto">
+						<m:Label id="_IDGenLabel9" text="{i18n>EndDate}" />
+						<template>
+							<m:Label id="_IDGenLabel07" text="{path: 'oListModel>EndDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy', UTC: true }}" />
+						</template>
+					</Column>
+					<Column id="_IDGenColumn9" width="auto">
+						<m:Label id="_IDGenLabel10" text="{i18n>TotalPrice}" />
+						<template>
+							<m:Label id="_IDGenLabel08" text="{path: 'oListModel>TotalPrice', formatter: '.formatter.CurrencyBRL'}" />
+						</template>
+					</Column> -->
+					<!-- <Column id="_IDGenColumn10" width="auto">
+						<m:Label id="_IDGenLabel11" text="{i18n>CurrencyCode}" />
+						<template>
+							<m:Label id="_IDGenLabel09" text="{oListModel>CurrencyCode}" />
+						</template>
+					</Column>
+					<Column id="_IDGenColumn11" width="auto">
+						<m:Label id="_IDGenLabel12" text="{i18n>TravelStatus}" />
+						<template>
+							<m:Label id="_IDGenLabel010" text="{oListModel>TravelStatus}" />
+						</template>
+					</Column>
+					<Column id="_IDGenColumn12" width="auto" >
+						<m:Label id="_IDGenLabel13" text="{i18n>Description}" />
+						<template>
+							<m:Label id="_IDGenLabe" text="{oListModel>Description}" />
+						</template>
+					</Column>
+					<Column id="_IDGenColumn13" width="auto" >
+						<m:Label id="_IDGenLabel14" text="{i18n>LastChangedAt}" />
+						<template>
+							<m:Label id="_IDGenLabel4" text="{path: 'oListModel>LastChangedAt', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy', UTC: true }}" />
+						</template>
+					</Column> -->
+				</columns>
+			</Table>
+			</f:content>
+		</f:DynamicPage>
 </mvc:View>

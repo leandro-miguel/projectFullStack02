@@ -1,12 +1,15 @@
 sap.ui.define(
     [
-        "sap/ui/core/mvc/Controller"
+      "./BaseController",
+      "../model/GlobalModel"
     ],
-    function(BaseController) {
+    function(BaseController, GlobalModel) {
       "use strict";
   
       return BaseController.extend("projectfullstack.controller.App", {
         onInit() {
+          const oGlobalModel = GlobalModel.getInstance();
+          oGlobalModel.setoModelMainService(this.getOwnerComponent().getModel("oServiceMainModel"));
         }
       });
     }

@@ -1,28 +1,34 @@
-sap.ui.define([
-    "sap/ui/base/Object"
-], function (Object) {
-    "use strict";
-   
-    var instance;
- 
-    var GlobalModel = Object.extend("<root>.model.GlobalModel", {
-        constructor: function () {
-            this.oModelMainService=null;
-        },
-    
-        setoModelMainService: function (oModel) {
-            this.oModelMainService = oModel;
-        },
-        getoModelMainService: function () {
-            return this.oModelMainService;
-        },
-    });
-    return {
-        getInstance: function () {
-            if (!instance) {
-                instance = new GlobalModel();
+// @ts-nocheck
+sap.ui.define(
+    [
+        "sap/ui/base/Object",
+        "./GlobalModel"
+    ],
+    function (Object, GlobalModel) {
+        "use strict";
+        return Object.extend("projectfullstack.model.ListModel", {
+            constructor: function () {
+                //
+            },
+
+            async calloDataGetFunction() {
+                const oGlobalModel = GlobalModel.getInstance();
+                const oDataModel = oGlobalModel.getoModelMainService();
+                oDataModel.setUseBatch(false);
+                const sPath = "/CadastroSet";
+                const fnPromise = new Promise((res, rej) => {
+                    oDataModel.read(sPath, {
+                        refreshAfterChange: true,
+                        success: (oData, response) => {
+                            res({ oData, response });
+                        },
+                        error: (oError) => {
+                            rej(oError);
+                        }
+                    });
+                });
+                return fnPromise;
             }
-            return instance;
-        }
-    };
-});
+        });
+    }
+);
